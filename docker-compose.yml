@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # Spring Boot Application
+  springboot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+  # Cucumber Tests
+  cucumber-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - springboot-app
+    environment:
+      RUN_TESTS: "true" # Ensures tests are executed
+    volumes:
+      - ./results:/app/results # Save test results locally
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
