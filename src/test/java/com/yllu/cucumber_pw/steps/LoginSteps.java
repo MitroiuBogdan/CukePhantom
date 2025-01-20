@@ -12,8 +12,9 @@ public class LoginSteps {
     private boolean isLoggedIn;
 
     @Given("the user navigates to the login page")
-    public void theUserNavigatesToTheLoginPage() {
+    public void theUserNavigatesToTheLoginPage() throws InterruptedException {
         System.out.println("User navigated to the login page.");
+//        Thread.sleep(1000 * 1000); // Pause for 1000 seconds
         isLoggedIn = false; // Initial state
     }
 

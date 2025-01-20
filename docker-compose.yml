@@ -1,32 +1,17 @@
 version: '3.8'
 
 services:
-  # Maven Build Service
-  maven-build:
-    image: maven:3.9.4-eclipse-temurin-17
-    working_dir: /app
-    volumes:
-      - .:/app
-      - ~/.m2:/root/.m2 # Cache Maven dependencies
-    command: mvn clean package
-    networks:
-      - app-network
-
   # Spring Boot Application
   springboot-app:
     build:
       context: .
       dockerfile: Dockerfile
-    depends_on:
-      - maven-build
     ports:
       - "8080:8080"
     networks:
       - app-network
-    environment:
-      RUN_TESTS: "false"
 
-  # Cucumber Tests
+  # Linux-based Container for Tests
   cucumber-tests:
     build:
       context: .

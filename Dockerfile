@@ -1,30 +1,27 @@
-# Use Maven image for build stage
-FROM maven:3.9.4-eclipse-temurin-17 AS build
+# Base image: Lightweight Linux with Java and Node.js for Playwright
+FROM debian:bullseye-slim
+
+# Install required packages
+RUN apt-get update && apt-get install -y \
+    openjdk-17-jdk \
+    curl \
+    wget \
+    git \
+#    nodejs \
+#    npm \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Playwright and Cucumber globally
+#RUN npm install -g playwright @cucumber/cucumber
 
 # Set working directory
 WORKDIR /app
 
-# Copy the project files
-COPY pom.xml .
-COPY src ./src
+# Copy project files
+COPY . .
 
-# Build the application
-RUN mvn clean package
+# Create results directory
+RUN mkdir -p /app/results
 
-# Use Playwright base image for final stage
-FROM mcr.microsoft.com/playwright:v1.29.0-focal
-
-# Install Java for Spring Boot
-RUN apt-get update && apt-get install -y openjdk-17-jdk && rm -rf /var/lib/apt/lists/*
-
-# Set working directory
-WORKDIR /app
-
-# Copy the built JAR file from the build stage
-COPY --from=build /app/target/cucumber-pw-0.0.1-SNAPSHOT.jar ./app.jar
-
-# Expose the application port
-EXPOSE 8080
-
-# Default entrypoint for running the application
-ENTRYPOINT ["java", "-jar", "./app.jar"]
+# Default command to run tests
+CMD ["npx", "cucumber-js", "--format", "pretty", "--format", "json:/app/results/cucumber-report.json"]
