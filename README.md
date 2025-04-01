@@ -17,15 +17,23 @@
 
 ---
 
-## 🧪 PhantomHunter (Testing Module)
+## 🧪 PhantomBridge (Testing Module)
 
-**PhantomHunter** is the dedicated testing module for GlassGate. It combines the power of **Cucumber** (for behavior-driven development) and **Playwright** (for browser-level testing) to verify both the proxy's correctness and the content rendering pipeline.
+**PhantomBridge** is the dedicated testing module for GlassGate. It leverages the combined power of **Cucumber** for behavior-driven test scenarios and **Playwright** for full-browser automation, ensuring that the proxied webpages are not only delivered correctly, but rendered and functioning as expected on the client side.
 
 ### Key Capabilities:
 
-- ✅ BDD Scenarios (via Cucumber)
-- 🕵️‍♂️ End-to-end testing with real browser interaction (via Playwright)
-- 👻 Ghost-like test execution — quietly validating content, structure, and response codes
+- ✅ BDD Scenarios with **Cucumber**  
+  Write human-readable tests that define expected behaviors of the proxy and target webpages.
+
+- 🕵️‍♂️ Full browser automation with **Playwright**  
+  Simulates real-world rendering and user interaction to validate the integrity of retrieved pages.
+
+- 🔗 **End-to-End Verification**  
+  The proxy and testing module are tightly integrated, with tests verifying actual HTML output and rendering post-proxy.
+
+- 👻 Phantom-level precision  
+  Executes in the background, inspecting structure, content, and visual correctness silently and effectively.
 
 ---
 
@@ -33,17 +41,17 @@
 
 - Safely exposing or monitoring external content
 - Building custom content wrappers or analyzers
-- Verifying HTML rendering across sites in test environments
-- Testing content availability or proxy reliability with real browser behavior
+- Validating webpage availability and content accuracy after proxying
+- Ensuring consistent rendering and client-side behavior of proxied pages
 
 ---
 
 ## 📦 Modules
 
-| Module         | Description                                  |
-|----------------|----------------------------------------------|
-| `glassgate-core`     | Spring Boot app for proxying and returning webpages |
-| `phantomhunter-tests` | Testing suite using Cucumber + Playwright         |
+| Module               | Description                                                    |
+|----------------------|----------------------------------------------------------------|
+| `phantombridge`     | Spring Boot app for proxying and returning webpages           |
+| `glassgate`| Integrated test suite using Cucumber + Playwright for E2E validation |
 
 ---
 
@@ -59,7 +67,7 @@
 
 ## 🧭 Getting Started
 
-> Detailed instructions coming soon. Clone the repo, build the core, and run `phantomhunter-tests` to begin.
+> Detailed instructions coming soon. Clone the repo, build the core, and run `glassgate-tests` to begin.
 
 ---
 
@@ -68,4 +76,3 @@
 MIT (or your preferred license)
 
 ---
-
