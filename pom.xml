@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.yllu</groupId>
-	<artifactId>cucumber-pw</artifactId>
+	<artifactId>GlassGate</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cucumber-pw</name>
+	<name>GlassGate</name>
 	<description>cucumber-playwright</description>
 	<url/>
 	<licenses>
